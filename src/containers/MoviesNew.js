@@ -14,7 +14,11 @@ class MoviesNew extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.addMovie(this.state);
+    const { addMovie, history } = this.props;
+    // Create the movie with the Redux action
+    addMovie(this.state);
+    // redirect to /movies route
+    history.push('/movies')
   }
 
   handleOnChange = event => {
@@ -26,10 +30,11 @@ class MoviesNew extends Component {
   render(){
     return (
       <form style={{ marginTop: '16px' }} onSubmit={this.handleOnSubmit} >
-        <input 
-          type="text" 
-          onChange={this.handleOnChange} 
-          placeholder="Add a Movie" />
+        <input
+          type="text"
+          onChange={this.handleOnChange}
+          placeholder="Add a Movie"
+          value={this.state.title}/>
         <input type="submit" value="Add Movie" />
       </form>
     );
