@@ -14,7 +14,14 @@ class MoviesNew extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.addMovie(this.state);
+    // Destructure addMovie and history from the components props
+    const { addMovie, history } = this.props;
+    
+    // Create movie with the redux action
+    addMovie(this.state);
+    
+    // Redirect to /movies route
+    history.push('/movies')
   }
 
   handleOnChange = event => {
